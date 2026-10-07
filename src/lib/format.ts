@@ -1,40 +1,16 @@
-export function naira(value: number): string {
+
+export function formatDateTime(date: string | Date) {
+  const d = new Date(date);
+  return d.toLocaleString("en-NG");
+}
+
+export function naira(amount: number) {
   return new Intl.NumberFormat("en-NG", {
     style: "currency",
     currency: "NGN",
-    maximumFractionDigits: 0,
-  }).format(value);
+  }).format(amount);
 }
 
-export function formatWhen(ts: number): string {
-  return new Date(ts).toLocaleString("en-NG", {
-    dateStyle: "medium",
-    timeStyle: "short",
-  });
-}
-
-export function roleLabel(role: string): string {
-  switch (role) {
-    case "org_admin":
-      return "Organization Admin";
-    case "company_admin":
-      return "Company Admin";
-    case "shop_manager":
-      return "Shop Manager";
-    default:
-      return role;
-  }
-}
-
-export function dashboardPath(role: string): string {
-  switch (role) {
-    case "org_admin":
-      return "/org";
-    case "company_admin":
-      return "/company";
-    case "shop_manager":
-      return "/shop";
-    default:
-      return "/";
-  }
+export function stationLabel(station: string) {
+  return station ? station.charAt(0).toUpperCase() + station.slice(1) : "Unknown Station";
 }
